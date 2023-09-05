@@ -151,9 +151,7 @@ export default function Post({
                                 className="mr-2 w-8 h-8 rounded-full border border-black-400"
                             />
 
-                            <div className="text-black-400 font-bold text-sm text-black-50 hover:underline mt-1">
-                                {author.name}
-                            </div>
+                            <div className="">{author.name}</div>
                         </Link>
                     </div>
                     <div>
