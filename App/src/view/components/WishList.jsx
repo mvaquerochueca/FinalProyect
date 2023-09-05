@@ -6,6 +6,7 @@ export default function Wishlist() {
     const [productName, setProductName] = useState('')
     const [amazonUrl, setAmazonUrl] = useState('')
     const [products, setProducts] = useState([])
+    const [selectedProducts, setSelectedProducts] = useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -34,6 +35,12 @@ export default function Wishlist() {
     const handleRemoveSelected = () => {
         const updatedProducts = products.filter((product) => !product.selected)
         setProducts(updatedProducts)
+    }
+
+    //show button to remove selected products if any are selected
+
+    const hasSelectedProducts = () => {
+        return products.some((product) => product.selected)
     }
 
     return (
@@ -92,7 +99,9 @@ export default function Wishlist() {
                 </ul>
                 <button
                     onClick={handleRemoveSelected}
-                    className="bg-red-500 text-white rounded px-4 py-2 mt-2"
+                    className={`bg-red-500 text-white rounded px-4 py-2 mt-2 ${
+                        !hasSelectedProducts() && 'hidden'
+                    }`}
                 >
                     Remove Product{' '}
                 </button>

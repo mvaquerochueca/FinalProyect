@@ -58,7 +58,7 @@ function validateUrl(url, explain = 'Url') {
     if (typeof url !== 'string')
         throw new TypeError(`${explain} is not a string`)
     if (!url.trim().length) throw new ContentError(`${explain} is empty`)
-    if (!URL_REGEX.test(url)) throw new ContentError(`${explain} is not valid`)
+    // if (!URL_REGEX.test(url)) throw new ContentError(`${explain} is not valid`)
 }
 
 const ID_REGEX = /^[0-9a-fA-F]{24}$/

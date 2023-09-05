@@ -1,5 +1,5 @@
 const {
-    validators: { validateId, validateUrl, validateText },
+    validators: { validateId, validateText },
 } = require('com')
 const { User, Post, Comment } = require('../data/models')
 

@@ -1,24 +1,17 @@
 import { validators } from 'com'
 import context from './context'
 
-const { validateId, validateCallback, validatePassword } = validators
+const { validateId, validatePassword } = validators
 
-export default (
-    userId,
-    password,
-    newPassword,
-    newPasswordConfirm,
-    callback
-) => {
+export default (userId, password, newPassword, newPasswordConfirm) => {
     validateId(userId)
     validatePassword(password)
     validatePassword(newPassword, 'new password')
     validatePassword(newPasswordConfirm, 'new password confirm')
-    validateCallback(callback)
 
     return (async () => {
         const res = await fetch(
-            `${import.meta.env.VITE_API_URL}/users/password/${userId}`,
+            `${import.meta.env.VITE_API_URL}/users/password/`,
             {
                 method: 'PATCH',
                 headers: {

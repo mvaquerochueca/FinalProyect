@@ -4,8 +4,8 @@ const {
 const { User, Post } = require('../data/models')
 
 module.exports = (userId, postId) => {
-    validateId(userId, 'User Id')
-    validateId(postId, 'Post Id')
+    // validateId(userId, 'User Id')
+    // validateId(postId, 'Post Id')
 
     return Promise.all([
         User.findById(userId, '-__v').lean(),

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/12</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">27.27% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/11</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -121,20 +121,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const {
@@ -157,21 +157,21 @@ const { User } = require('../data/models')
  * @throws {RangeError} On password lenght not between 8 and 16 characters
  **/
 &nbsp;
-module.exports = <span class="fstat-no" title="function not covered" >(e</span>mail, password) =&gt; {
-<span class="cstat-no" title="statement not covered" >    validateEmail(email)</span>
-<span class="cstat-no" title="statement not covered" >    validatePassword(password)</span>
+module.exports = function authenticateUser(email, password) {
+    validateEmail(email)
+    validatePassword(password)
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return (<span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
-        const user = <span class="cstat-no" title="statement not covered" >await User.findOne({ email })</span>
+    return (async () =&gt; {
+        const user = await User.findOne({ email })
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        if (!user) <span class="cstat-no" title="statement not covered" >throw new ExistenceError('User not found')</span></span>
+        if (!user) throw new ExistenceError('User not found')
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        if (user.password !== password)</span>
-<span class="cstat-no" title="statement not covered" >            throw new AuthError(</span>
+        if (user.password !== password)
+            throw new AuthError(
                 'Password must be at least 8 characters long and contain a special character and a number'
             )
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        return user.id</span>
+        return user.id
     })()
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -181,7 +181,7 @@ module.exports = <span class="fstat-no" title="function not covered" >(e</span>m
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-09-04T13:55:17.717Z
+                at 2023-09-05T21:23:34.312Z
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -1,14 +1,19 @@
 import index from '../../logic'
 import { Link } from 'react-router-dom'
-// import { toggleLikePost } from '../../logic'
 // import { deletePost } from '../../logic'
-import { useAppContext } from '../hooks'
+import { useAppContext, useHandleErrors } from '../hooks'
 // import { isCurrentUser } from '../../logic'
 // import { getUserId } from '../../logic'
 import { DEFAULT_AVATAR } from '../../ui.js'
 
-const { toggleFavPosts, toggleLikePost, deletePost, isCurrentUser, getUserId } =
-    index
+const {
+    toggleFavPosts,
+    toggleLikePost,
+    deletePost,
+    isCurrentUser,
+    getUserId,
+    context,
+} = index
 
 export default function Post({
     post: { id, image, location, text, date, likes, author, fav, comments },
@@ -23,31 +28,15 @@ export default function Post({
     const handleEditPost = () => onEditPost(id)
     const handleCommentPost = () => onCommentPost()
 
+    const handleErrors = useHandleErrors()
+
     const handleToggleLikePost = () => {
-        try {
-            toggleLikePost(context.userId, id, (error) => {
-                if (error) {
-                    toast.error(error.message)
-                }
-                onToggledLikePost()
-            })
-        } catch (error) {
-            toast.error(error.message)
-        }
-    }
+        debugger
+        handleErrors(async () => {
+            await toggleLikePost(context.userId, id)
 
-    const handleDoubleClick = () => {
-        try {
-            toggleLikePost(context.userId, id, (error) => {
-                if (error) {
-                    toast.error(error.message)
-                }
-
-                onToggledLikePost()
-            })
-        } catch (error) {
-            toast.error(error.message)
-        }
+            onToggledLikePost()
+        })
     }
 
     const handleDeletePost = () => {
@@ -120,6 +109,32 @@ export default function Post({
         }
     }
 
+    const extractComments = (comments) => {
+        if (comments.length > 0) {
+            return comments.map((comment) => (
+                <div key={comment.id}>
+                    <p>
+                        <b>
+                            <Link
+                                className="id"
+                                href="#"
+                                to="/profile"
+                                onClick={onGoToProfile}
+                            >
+                                {`${comment.author.name} `}
+                            </Link>
+                        </b>
+                        {comment.text}
+                    </p>
+                </div>
+            ))
+        } else {
+            return <p>Comments:</p>
+        }
+    }
+
+    const allComments = extractComments(comments)
+
     const locationPost = location ? limitLocation(location) : ''
 
     const textPost = limitText(text)
@@ -129,14 +144,10 @@ export default function Post({
     return (
         <div className="mt-24  flex justify-center items-center">
             <div className="max-w-xs container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
-                <img
-                    className="w-full cursor-pointer"
-                    src={image}
-                    onDoubleClick={handleDoubleClick}
-                />
+                <img className="w-full cursor-pointer" src={image} />
 
                 <div className="flex p-4 justify-between border-black">
-                    <div className="left-4 top-4 absolute backdrop-blur-lg rounded-xl 	">
+                    <div className="left-4 top-4 absolute backdrop-blur-lg rounded-xl">
                         <Link
                             href="#"
                             className="flex p-1.5 px-3 border border-grey-200 rounded-xl"
@@ -173,7 +184,7 @@ export default function Post({
                             <i className="fa-sharp fa-regular fa-comment fa-xl"></i>
                         </button>
                     </div>
-                    <div className="flex space-x-2">
+                    {/* <div className="flex space-x-2">
                         <div className="flex justify-end ">
                             {isUserPost && (
                                 <button
@@ -206,12 +217,12 @@ export default function Post({
                                 )}
                             </button>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <section className="mb-10 mt-2 ml-2">
-                    <p className="mb-1">
+                    {/* <p className="mb-1">
                         Likes: {likes && handleShowLikes(likes)}
-                    </p>
+                    </p> */}
                     <p>
                         <b>
                             <Link className="id" href="#" to="/profile">
@@ -233,7 +244,7 @@ export default function Post({
                     <p className="text-base"> {date}</p>
                 </section>
                 <div>
-                    <p className="mb-2 ml-2">Comments:</p>
+                    <p className="mb-2 ml-2">{allComments}</p>
                 </div>
             </div>
         </div>

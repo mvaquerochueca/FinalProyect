@@ -1,29 +1,27 @@
 import index from '../../logic'
-import { useAppContext } from '../hooks'
 import Form from '../library/Form'
 import Container from '../library/Container'
 import Input from '../library/Input'
 import Button from '../library/ButtonForm'
+import { useAppContext, useHandleErrors } from '../hooks'
 
 const { updateUserAvatar, context } = index
 
 export default function UpdateAvatar({ onUserAvatarUpdated }) {
     const { Toaster, toast } = useAppContext()
 
+    const handleErrors = useHandleErrors()
+
     const handleUpdateAvatar = (event) => {
         event.preventDefault()
-        debugger
+
         const url = event.target.url.value
 
-        try {
-            updateUserAvatar(context.token, url)
-                .then(() => {
-                    onUserAvatarUpdated()
-                })
-                .catch((error) => toast(error.message))
-        } catch (error) {
-            toast.error(error.message)
-        }
+        handleErrors(async () => {
+            await updateUserAvatar(context.token, url)
+
+            onUserAvatarUpdated()
+        })
     }
 
     return (

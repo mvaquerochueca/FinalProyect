@@ -13,4 +13,5 @@ module.exports = {
     createPet: require('./createPet'),
     retrievePet: require('./retrievePet'),
     retrievePets: require('./retrievePets'),
+    toggleLikePost: require('./toggleLikePost'),
 }

@@ -1,17 +1,19 @@
 require('dotenv').config()
 const { expect } = require('chai')
+const { describe } = require('mocha')
 const registerUser = require('../registerUser')
 const { mongoose } = require('mongoose')
-const { generate, cleanUp } = require('../helpers/test')
+const { generateUser, cleanUp } = require('../helpers/test')
 const { User } = require('../../data/models')
 
 describe('registerUser', () => {
+    let user
     before(async () => {
         await mongoose.connect(process.env.MONGODB_URL_TEST)
     })
 
     beforeEach(async () => {
-        user = generate.user()
+        user = generateUser.user()
 
         await cleanUp()
     })

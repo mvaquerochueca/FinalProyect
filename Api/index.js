@@ -20,6 +20,7 @@ const {
     createPetHandler,
     retrievePetsHandler,
     retrievePetHandler,
+    toggleLikePostHandler,
 } = require('./handlers')
 const mongoose = require('mongoose')
 
@@ -45,7 +46,11 @@ mongoose
         api.get('/users', retrieveUserHandler)
 
         //Patch actualizar en la Api
-        api.patch('/users/avatar', jsonBodyParser, updateUserAvatarHandler)
+        api.patch(
+            '/users/:userId/avatar',
+            jsonBodyParser,
+            updateUserAvatarHandler
+        )
 
         api.patch('/users/password', jsonBodyParser, updateUserPasswordHandler)
 
@@ -54,6 +59,8 @@ mongoose
         api.get('/posts', jsonBodyParser, retrievePostsHandler)
 
         api.get('/posts/:postId', jsonBodyParser, retrievePostHandler)
+
+        api.post('/posts/:postId/like', jsonBodyParser, toggleLikePostHandler)
 
         api.post(
             '/posts/:postId/comments',

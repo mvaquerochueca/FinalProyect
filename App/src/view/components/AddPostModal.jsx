@@ -64,7 +64,6 @@ export default function AddPostModal({ onCancel, onPostCreated }) {
 
     const handleCreatePost = (event) => {
         event.preventDefault()
-        debugger
 
         const image = event.target.image.value
         const location = event.target.location.value

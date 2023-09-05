@@ -12,9 +12,8 @@ export default function Settings({ onUserAvatarUpdated }) {
 
     const handleUpdateAvatar = (event) => {
         event.preventDefault()
-        debugger
         const url = event.target.url.value
-
+        debugger
         handleErrors(async () => {
             await updateUserAvatar(context.token, url)
 

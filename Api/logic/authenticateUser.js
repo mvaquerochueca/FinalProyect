@@ -18,7 +18,7 @@ const { User } = require('../data/models')
  * @throws {RangeError} On password lenght not between 8 and 16 characters
  **/
 
-module.exports = (email, password) => {
+module.exports = function authenticateUser(email, password) {
     validateEmail(email)
     validatePassword(password)
 

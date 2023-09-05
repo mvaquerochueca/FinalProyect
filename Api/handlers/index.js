@@ -14,4 +14,5 @@ module.exports = {
     createPetHandler: require('./createPetHandler'),
     retrievePetsHandler: require('./retrievePetsHandler'),
     retrievePetHandler: require('./retrievePetHandler'),
+    toggleLikePostHandler: require('./toggleLikePostHandler'),
 }
