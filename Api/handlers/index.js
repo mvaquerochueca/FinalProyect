@@ -1,0 +1,17 @@
+module.exports = {
+    helloApiHandler: require('./helloApiHandler'),
+    registerUserHandler: require('./registerUserHandler'),
+    authenticateUserHandler: require('./authenticateUserHandler'),
+    updateUserAvatarHandler: require('./updateUserAvatarHandler'),
+    retrieveUserHandler: require('./retrieveUserHandler'),
+    updateUserPasswordHandler: require('./updateUserPasswordHandler'),
+    createPostHandler: require('./createPostHandler'),
+    retrievePostsHandler: require('./retrievePostsHandler'),
+    deletePostHandler: require('./deletePostHandler'),
+    retrievePostHandler: require('./retrievePostHandler'),
+    addCommentToPostHandler: require('./addCommentToPostHandler'),
+    removeCommentFromPostHandler: require('./removeCommentFromPostHandler'),
+    createPetHandler: require('./createPetHandler'),
+    retrievePetsHandler: require('./retrievePetsHandler'),
+    retrievePetHandler: require('./retrievePetHandler'),
+}
