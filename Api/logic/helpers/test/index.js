@@ -4,4 +4,5 @@ module.exports = {
     generateUser: require('./generateUser'),
     generatePost: require('./generatePost'),
     generatePet: require('./generatePet'),
+    generateComment: require('./generateComment'),
 }

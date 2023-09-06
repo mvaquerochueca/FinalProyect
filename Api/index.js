@@ -52,7 +52,11 @@ mongoose
             updateUserAvatarHandler
         )
 
-        api.patch('/users/password', jsonBodyParser, updateUserPasswordHandler)
+        api.patch(
+            '/users/password/:userId',
+            jsonBodyParser,
+            updateUserPasswordHandler
+        )
 
         api.post('/posts', jsonBodyParser, createPostHandler)
 

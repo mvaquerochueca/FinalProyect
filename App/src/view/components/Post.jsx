@@ -242,10 +242,10 @@ export default function Post({
                         </Link>
                     </p>
                     <p className="text-base"> {date}</p>
-                </section>
-                <div>
                     <p className="mb-2 ml-2">{allComments}</p>
-                </div>
+                </section>
+                {/* <div>
+                </div> */}
             </div>
         </div>
     )

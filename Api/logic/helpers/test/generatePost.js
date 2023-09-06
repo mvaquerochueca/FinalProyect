@@ -8,5 +8,6 @@ module.exports = {
         text: `text-${Math.random()}`,
         date: new Date(),
         location: `location-${Math.random()}`,
+        likes: [],
     }),
 }

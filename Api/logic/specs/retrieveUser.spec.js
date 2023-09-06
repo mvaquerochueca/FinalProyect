@@ -42,6 +42,4 @@ describe('retrieveUser', () => {
             expect(error.message).to.equal('User not found!')
         }
     })
-
-    // Puedes agregar más pruebas aquí para manejar otros casos como ID no válido, usuario inexistente, etc.
 })

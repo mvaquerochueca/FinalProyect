@@ -11,7 +11,7 @@ module.exports = (userId, postId, commentId) => {
     return Promise.all([User.findById(userId), Post.findById(postId)])
         .then(([user, post]) => {
             if (!user) throw new Error(`User with id ${userId} not found`)
-            if (!post) throw new Error(`Post with id ${postId} not found`)
+            if (!post) throw new Error(`Post with id not found`)
 
             const index = post.comments.findIndex(
                 (comment) => comment.id === commentId

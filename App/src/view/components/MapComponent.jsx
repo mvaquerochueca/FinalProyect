@@ -14,9 +14,7 @@ export default function MapComponent() {
     })
     const [userLocation, setUserLocation] = useState(null)
     const [searchKeyword, setSearchKeyword] = useState('')
-    const [randomLocations, setRandomLocations] = useState([])
-    const [showRandomMarkers, setShowRandomMarkers] = useState(false)
-    const [infoWindowContent, setInfoWindowContent] = useState(null)
+    const [activeMarker, setActiveMarker] = useState(null)
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -27,23 +25,6 @@ export default function MapComponent() {
         }
     }, [])
 
-    const generateRandomLocations = () => {
-        const randomLocations = []
-        for (let i = 0; i < 5; i++) {
-            const lat = userLocation.lat + (Math.random() - 0.5) * 0.05 // Pequeño desplazamiento aleatorio
-            const lng = userLocation.lng + (Math.random() - 0.5) * 0.05 // Pequeño desplazamiento aleatorio
-            randomLocations.push({ lat, lng })
-        }
-        setRandomLocations(randomLocations)
-        setShowRandomMarkers(true) // Mostrar marcadores
-    }
-    const handleMarkerClick = (index) => {
-        // Aquí puedes generar información aleatoria de restaurantes, hoteles o lugares pet-friendly
-        const randomInfo = `Nombre del lugar: Lugar ${
-            index + 1
-        }\nTipo: Restaurante\nDescripción: Lorem ipsum dolor sit amet, consectetur adipiscing elit.`
-        setInfoWindowContent(randomInfo)
-    }
     const handleSearchChange = (e) => {
         setSearchKeyword(e.target.value)
     }
@@ -54,6 +35,58 @@ export default function MapComponent() {
             generateRandomLocations()
         }
     }
+
+    const handleOnLoad = (map) => {
+        const bounds = new google.maps.LatLngBounds()
+        markers.forEach(({ position }) => bounds.extend(position))
+        map.fitBounds(bounds)
+    }
+
+    const handleActiveMarker = (marker) => {
+        if (marker === activeMarker) {
+            return
+        }
+        setActiveMarker(marker)
+    }
+
+    const markers = [
+        {
+            id: 1,
+            name: 'Restaurante Tres Puesrtas',
+            position: { lat: 41.532464 + 0.001, lng: 1.841194 + 0.031 },
+        },
+        {
+            id: 2,
+            name: 'Hotel Hesperia  3*',
+            position: { lat: 41.532464 - 0.002, lng: 1.841194 - 0.002 },
+        },
+        {
+            id: 3,
+            name: 'Camping Baix Llobregat',
+            position: { lat: 41.532464 + 0.003, lng: 1.841194 - 0.023 },
+        },
+        {
+            id: 4,
+            name: 'Marker 4',
+            position: { lat: 41.532464 - 0.044, lng: 1.841194 + 0.024 },
+        },
+        {
+            id: 5,
+            name: 'Cafeteria 365',
+            position: { lat: 41.532464 + 0.025, lng: 1.841194 - 0.015 },
+        },
+        {
+            id: 6,
+            name: 'PetShop',
+            position: { lat: 41.532464 - 0.016, lng: 1.841194 + 0.016 },
+        },
+        {
+            id: 7,
+            name: 'Clinica Veterinaria',
+
+            position: { lat: 41.532464 + 0.107, lng: 1.841194 - 0.037 },
+        },
+    ]
 
     if (!isLoaded) return <div>"Loading Maps"</div>
 
@@ -70,31 +103,27 @@ export default function MapComponent() {
                 onChange={handleSearchChange}
                 onKeyPress={handleKeyPress}
             />{' '}
-            {isLoaded && showRandomMarkers && (
-                <GoogleMap
-                    mapContainerClassName="map-container"
-                    center={userLocation}
-                    zoom={12}
-                >
-                    {randomLocations.map((location, index) => (
-                        <Marker
-                            key={index}
-                            position={location}
-                            onClick={() => handleMarkerClick(index)}
-                        >
-                            {infoWindowContent && (
-                                <InfoWindow
-                                    onCloseClick={() =>
-                                        setInfoWindowContent(null)
-                                    }
-                                >
-                                    <div>{infoWindowContent}</div>
-                                </InfoWindow>
-                            )}
-                        </Marker>
-                    ))}
-                </GoogleMap>
-            )}
+            <GoogleMap
+                mapContainerClassName="map-container"
+                center={userLocation}
+                zoom={12}
+            >
+                {markers.map(({ id, name, position }) => (
+                    <Marker
+                        key={id}
+                        position={position}
+                        onClick={() => handleActiveMarker(id)}
+                    >
+                        {activeMarker === id ? (
+                            <InfoWindow
+                                onCloseClick={() => setActiveMarker(null)}
+                            >
+                                <div>{name}</div>
+                            </InfoWindow>
+                        ) : null}
+                    </Marker>
+                ))}
+            </GoogleMap>
         </div>
     )
 }

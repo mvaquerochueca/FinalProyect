@@ -3,7 +3,6 @@ const {
     errors: { ExistenceError, PropertyError },
     validators: { validateId },
 } = require('com')
-const { users } = require('./context')
 
 module.exports = (userId) => {
     validateId(userId, 'User id')
@@ -13,10 +12,8 @@ module.exports = (userId) => {
         User.findById({ _id: userId }),
         Post.findById({ _id: author.id }),
     ]).then(([user, post]) => {
-        if (!user)
-            throw new ExistenceError(`User with id ${userId} does not exist!`)
-        if (!post)
-            throw new ExistenceError(`Post with id ${postId} does not exist!`)
+        if (!user) throw new Error(`User with id ${userId} does not exist!`)
+        if (!post) throw new Error(`Post with id ${postId} does not exist!`)
         if (post.author.toString() !== userId)
             throw new PropertyError(
                 `User with id ${userId} is not the author of post with id ${postId}`

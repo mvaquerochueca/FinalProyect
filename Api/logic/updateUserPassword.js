@@ -16,7 +16,7 @@ module.exports = (
 
     return (async () => {
         const user = await User.findById(userId)
-        if (!user) throw new ExistenceError('User not found!')
+        if (!user) throw new Error('User not found!')
         if (newPassword !== newPasswordConfirm)
             throw new Error('Passwords do not match!')
         if (previousPassword === newPassword)

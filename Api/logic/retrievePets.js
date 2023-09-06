@@ -17,8 +17,6 @@ module.exports = (userId) => {
             pet.id = pet._id.toString()
             delete pet._id
             delete pet.__v
-
-            // You can add any additional transformations or checks specific to pets here
         })
 
         return pets

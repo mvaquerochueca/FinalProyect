@@ -51,7 +51,6 @@ describe('registerUser', () => {
                 user.passwordConfirm
             )
         } catch (error) {
-            //Probar si es instancia de duplicity error
             expect(error).to.instanceOf(Error)
             expect(error.message).to.equal('Email is not valid')
         }
