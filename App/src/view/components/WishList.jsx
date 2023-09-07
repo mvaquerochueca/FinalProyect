@@ -76,7 +76,7 @@ export default function Wishlist() {
                 </h2>
                 <ul>
                     {products.map((product, index) => (
-                        <li key={index} className="mb-1 flex items-center">
+                        <li key={index} className="mb-1 flex items-center ">
                             <input
                                 type="checkbox"
                                 checked={product.selected}
@@ -88,6 +88,7 @@ export default function Wishlist() {
                                     href={product.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    className="size-xl"
                                 >
                                     {product.name}
                                 </a>

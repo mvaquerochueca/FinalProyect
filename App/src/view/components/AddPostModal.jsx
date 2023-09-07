@@ -1,7 +1,4 @@
 import index from '../../logic'
-// import './Modal.css'
-// import petitionApiQuote from '../../LibraryApis/petitionApiQuote.js'
-// import petitionApiImage from '../../LibraryApis/petitionApiImage'
 import { useState, useEffect } from 'react'
 import { useAppContext, useHandleErrors } from '../hooks'
 import { errors } from 'com'
@@ -16,25 +13,6 @@ export default function AddPostModal({ onCancel, onPostCreated }) {
     const [image, setImage] = useState(null)
 
     const handleErrors = useHandleErrors()
-
-    // const imageUrlInputRef = useRef(null)
-
-    // const handleRandomImage = () => {
-    //     try {
-    //         petitionApiImage((error, message) => {
-    //             if (error) {
-    //                 alert(error.message, 'error')
-    //                 return
-    //             }
-
-    //             setImage(message)
-
-    //             imageUrlInputRef.current.value = message
-    //         })
-    //     } catch (error) {
-    //         alert(error.message, 'error')
-    //     }
-    // }
 
     const handleRandomQuote = () => {
         try {

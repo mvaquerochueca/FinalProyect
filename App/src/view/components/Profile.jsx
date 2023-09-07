@@ -58,25 +58,49 @@ export default function Profile() {
         <div className="flex mt-20 flex-col items-center p-4 md:p-8 ml:ml-64">
             <NavBar />
             <Aside />
-            <h1 className="text-2xl font-bold mb-4">User</h1>
-            <div className="mb-4">
-                {user && (
-                    <div className="w-1/2 px-3 py-2">
+            {user && (
+                <div className="bg-white shadow-xl rounded-lg py-3">
+                    <div className="photo-wrapper p-2">
                         <img
+                            className="w-32 h-32 rounded-full mx-auto"
+                            alt="John Doe"
                             src={user.avatar}
-                            alt=""
-                            className="w-12 h-12 rounded-md object-cover mr-4"
                         />
-                        <p>{user.name}</p>
                     </div>
-                )}
-            </div>
+                    <div className="p-2">
+                        <h3 className="text-center text-xl text-gray-900 font-medium leading-8">
+                            {user.name}
+                        </h3>
+                        <div className="text-center text-gray-400 text-xs font-semibold">
+                            <p>Surname</p>
+                        </div>
+                        <table className="text-xs my-3">
+                            <tbody>
+                                <tr>
+                                    <td className="px-2 py-2 text-gray-500 font-semibold">
+                                        Phone
+                                    </td>
+                                    <td className="px-2 py-2">+34 658945612</td>
+                                </tr>
+                                <tr>
+                                    <td className="px-2 py-2 text-gray-500 font-semibold">
+                                        Email
+                                    </td>
+                                    <td className="px-2 py-2">{user.email}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            )}
+
             <div className="mb-4">
                 <button
-                    className="text-blue-500 underline cursor-pointer"
+                    class="mt-6 group relative h-10 w-40 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white"
                     onClick={togglePetSection}
                 >
                     {petVisible ? 'Hide' : 'Add'} Pet
+                    <div class="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
                 </button>
             </div>
             {petVisible && (

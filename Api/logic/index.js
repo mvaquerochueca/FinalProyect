@@ -14,4 +14,5 @@ module.exports = {
     retrievePet: require('./retrievePet'),
     retrievePets: require('./retrievePets'),
     toggleLikePost: require('./toggleLikePost'),
+    newReminder: require('./newReminder'),
 }

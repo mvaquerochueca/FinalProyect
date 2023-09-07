@@ -15,4 +15,5 @@ module.exports = {
     retrievePetsHandler: require('./retrievePetsHandler'),
     retrievePetHandler: require('./retrievePetHandler'),
     toggleLikePostHandler: require('./toggleLikePostHandler'),
+    newReminderHandler: require('./newReminderHandler'),
 }

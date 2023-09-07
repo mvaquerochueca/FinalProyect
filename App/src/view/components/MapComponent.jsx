@@ -97,7 +97,7 @@ export default function MapComponent() {
             <input
                 name="location"
                 id="location"
-                className="input mt-20 border-2 border-gray-500 rounded-md m-2 placeholder-gray-600 focus:placeholder-gray-500 sm:w-full md:w-full lg:w-full xl:w-full "
+                className="input mt-20 border-2 border-gray-500 z-10 rounded-md m-2 placeholder-gray-600 focus:placeholder-gray-500 sm:w-full h-8 md:w-full lg:w-full xl:w-full "
                 placeholder="Search"
                 value={searchKeyword}
                 onChange={handleSearchChange}

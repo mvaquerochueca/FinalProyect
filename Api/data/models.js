@@ -130,14 +130,34 @@ const post = new Schema({
     },
 })
 
+const reminder = new Schema({
+    user: {
+        type: ObjectId,
+        ref: 'User',
+        required: true,
+    },
+    text: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    date: {
+        type: Date,
+        required: true,
+        default: new Date(),
+    },
+})
+
 const User = model('User', user)
 const Post = model('Post', post)
 const Comment = model('Comment', comment)
 const Pet = model('Pet', pet)
+const Reminder = model('Reminder', reminder)
 
 module.exports = {
     User,
     Post,
     Comment,
     Pet,
+    Reminder,
 }

@@ -29,10 +29,7 @@ module.exports = (name, email, password) => {
             await User.create({ name, email, password, avatar: null, favs: [] })
         } catch (error) {
             if (error.message.includes('E11000'))
-                throw new DuplicityError(
-                    // `User with email ${email} already exists`
-                    'Email is not valid'
-                )
+                throw new DuplicityError('Email is not valid')
 
             throw error
         }

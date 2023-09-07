@@ -21,6 +21,7 @@ const {
     retrievePetsHandler,
     retrievePetHandler,
     toggleLikePostHandler,
+    newReminderHandler,
 } = require('./handlers')
 const mongoose = require('mongoose')
 
@@ -83,6 +84,8 @@ mongoose
             removeCommentFromPostHandler
         )
         // api.patch('/posts/delete', jsonBodyParser, deletePostHandler)
+
+        api.post('/reminders', jsonBodyParser, newReminderHandler)
 
         api.listen(process.env.PORT, () =>
             console.log(`server running in port ${process.env.PORT}`)

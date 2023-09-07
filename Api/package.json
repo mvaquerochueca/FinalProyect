@@ -7,7 +7,7 @@
         "start": "node .",
         "watch": "node --watch .",
         "inspect": "node --inspect-brk index.js",
-        "test": "mocha logic/specs/deletePost.spec.js",
+        "test": "mocha logic/specs/newReminder.spec.js",
         "test-inspect": "mocha --inspect-brk logic/specs/*.spec.js",
         "test-coverage": "nyc --reporter=html --reporter=text mocha logic/specs/*.spec.js"
     },

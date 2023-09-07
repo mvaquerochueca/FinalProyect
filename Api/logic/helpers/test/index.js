@@ -5,4 +5,5 @@ module.exports = {
     generatePost: require('./generatePost'),
     generatePet: require('./generatePet'),
     generateComment: require('./generateComment'),
+    generateReminder: require('./generateReminder'),
 }

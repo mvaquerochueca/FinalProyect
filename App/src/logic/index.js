@@ -19,6 +19,7 @@ import updateUserPassword from './updateUserPassword'
 import retrievePet from './retrievePet'
 import retrievePets from './retrievePets'
 import createPet from './createPet'
+import newReminder from './newReminder'
 
 export default {
     addCommentToPost,
@@ -42,4 +43,5 @@ export default {
     retrievePet,
     retrievePets,
     createPet,
+    newReminder,
 }

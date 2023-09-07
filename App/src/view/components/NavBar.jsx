@@ -319,7 +319,7 @@ export default function NavBar({ onOpenAddPostModal, onPostCreated }) {
                                 >
                                     {user && (
                                         <img
-                                            className="w-8 h-8 rounded-full"
+                                            className="w-8 h-8 rounded-full mr-2"
                                             src={user.avatar || DEFAULT_AVATAR}
                                             alt="user photo"
                                         />

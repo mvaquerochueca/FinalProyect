@@ -1,9 +1,6 @@
 import index from '../../logic'
 import { Link } from 'react-router-dom'
-// import { deletePost } from '../../logic'
 import { useAppContext, useHandleErrors } from '../hooks'
-// import { isCurrentUser } from '../../logic'
-// import { getUserId } from '../../logic'
 import { DEFAULT_AVATAR } from '../../ui.js'
 
 const {
@@ -71,13 +68,13 @@ export default function Post({
         }
     }
 
-    // const options = {
-    //     day: 'numeric',
-    //     month: 'long',
-    //     hour: 'numeric',
-    //     minute: 'numeric',
-    // }
-    // const formattedDate = date.toLocaleDateString('en-EN', options)
+    const options = {
+        day: 'numeric',
+        month: 'long',
+        hour: 'numeric',
+        minute: 'numeric',
+    }
+    const formattedDate = date.toLocaleDateString('en-EN', options)
 
     const handleShowLikes = (likes) => {
         if (likes.length < 5) {
@@ -138,8 +135,6 @@ export default function Post({
     const locationPost = location ? limitLocation(location) : ''
 
     const textPost = limitText(text)
-
-    const isUserPost = isCurrentUser(author.id)
 
     return (
         <div className="mt-24  flex justify-center items-center">
@@ -233,19 +228,13 @@ export default function Post({
                     </p>
                     <p>
                         Loc:
-                        <Link
-                            to={location}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            {locationPost}
-                        </Link>
+                        <Link to="/map">{locationPost}</Link>
                     </p>
                     <p className="text-base"> {date}</p>
-                    <p className="mb-2 ml-2">{allComments}</p>
                 </section>
-                {/* <div>
-                </div> */}
+                <div>
+                    <p className="mb-2 ml-2">{allComments}</p>
+                </div>
             </div>
         </div>
     )
