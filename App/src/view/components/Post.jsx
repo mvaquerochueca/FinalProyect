@@ -36,59 +36,51 @@ export default function Post({
         })
     }
 
-    const handleDeletePost = () => {
-        try {
-            deletePost(context.userId, id, (error) => {
-                if (error) {
-                    toast.error(error.message)
+    // const handleDeletePost = () => {
+    //     try {
+    //         deletePost(context.userId, id, (error) => {
+    //             if (error) {
+    //                 toast.error(error.message)
 
-                    return
-                }
+    //                 return
+    //             }
 
-                onPostDeleted()
-            })
-        } catch (error) {
-            toast.error(error.message)
-        }
-    }
+    //             onPostDeleted()
+    //         })
+    //     } catch (error) {
+    //         toast.error(error.message)
+    //     }
+    // }
 
-    const handleToggleSavePost = () => {
-        try {
-            toggleFavPosts(context.userId, id, (error) => {
-                if (error) {
-                    toast.error(error.message)
+    // const handleToggleSavePost = () => {
+    //     try {
+    //         toggleFavPosts(context.userId, id, (error) => {
+    //             if (error) {
+    //                 toast.error(error.message)
 
-                    return
-                }
+    //                 return
+    //             }
 
-                onToggledSavePost()
-            })
-        } catch (error) {
-            toast.error(error.message)
-        }
-    }
+    //             onToggledSavePost()
+    //         })
+    //     } catch (error) {
+    //         toast.error(error.message)
+    //     }
+    // }
 
-    const options = {
-        day: 'numeric',
-        month: 'long',
-        hour: 'numeric',
-        minute: 'numeric',
-    }
-    const formattedDate = date.toLocaleDateString('en-EN', options)
-
-    const handleShowLikes = (likes) => {
-        if (likes.length < 5) {
-            return likes.map((like) => (
-                <img
-                    key={like}
-                    className="w-8 h-8 rounded-full"
-                    src={author.avatar}
-                />
-            ))
-        } else {
-            return <p className="likesNumber">+{likes.length}</p>
-        }
-    }
+    // const handleShowLikes = (likes) => {
+    //     if (likes.length < 5) {
+    //         return likes.map((like) => (
+    //             <img
+    //                 key={like}
+    //                 className="w-8 h-8 rounded-full"
+    //                 src={author.avatar}
+    //             />
+    //         ))
+    //     } else {
+    //         return <p className="likesNumber">+{likes.length}</p>
+    //     }
+    // }
 
     const limitText = (text) => {
         if (text.length > 50) {
